@@ -1,0 +1,50 @@
+# LangChain ecosystem
+langchain>=0.1.0
+langchain-community>=0.0.10
+langchain-openai>=0.0.5
+langchain-chroma>=0.1.0
+
+# Vector store
+chromadb>=0.4.0
+
+# Embeddings (local option)
+sentence-transformers>=2.2.0
+
+# Document processing
+pypdf>=3.17.0
+pdfplumber>=0.10.0
+python-docx>=1.0.0
+unstructured>=0.10.0
+
+# LLM providers
+openai>=1.0.0
+anthropic>=0.18.0
+
+# API
+fastapi>=0.109.0
+uvicorn>=0.27.0
+python-multipart>=0.0.6
+
+# Dashboard
+streamlit>=1.28.0
+streamlit-chat>=0.1.1
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+tiktoken>=0.5.0
+tenacity>=8.2.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+
+# Code quality
+black>=23.0.0
+ruff>=0.1.0

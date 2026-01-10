@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "financial-rag-assistant"
+version = "1.0.0"
+description = "AI-powered RAG system for querying financial documents"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Akram Boudouaour", email = "boudouaouraccram@gmail.com"}
+]
+keywords = ["rag", "langchain", "financial", "nlp", "llm", "chatbot"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "langchain>=0.1.0",
+    "langchain-community>=0.0.10",
+    "langchain-openai>=0.0.5",
+    "chromadb>=0.4.0",
+    "pypdf>=3.17.0",
+    "openai>=1.0.0",
+    "streamlit>=1.28.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "tiktoken>=0.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+local = [
+    "sentence-transformers>=2.2.0",
+]
+api = [
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+    "python-multipart>=0.0.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/Accrame/financial-rag-assistant"
+Repository = "https://github.com/Accrame/financial-rag-assistant"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+target-version = "py39"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
