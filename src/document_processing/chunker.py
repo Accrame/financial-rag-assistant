@@ -1,9 +1,7 @@
 # Chunking strategies for financial documents
 
 from langchain_core.documents import Document
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_text_splitters import TokenTextSplitter
-import tiktoken
+from langchain_text_splitters import RecursiveCharacterTextSplitter, TokenTextSplitter
 
 
 class FinancialDocumentChunker:
@@ -167,14 +165,14 @@ if __name__ == "__main__":
 
     sample_text = """
     Item 1A. Risk Factors
-    
+
     The following discussion of risk factors contains forward-looking statements.
     These risk factors may be important to understanding other statements in this Form 10-K.
-    
+
     Market Risk
     Our business is subject to various market risks including interest rate fluctuations,
     foreign currency exchange rate changes, and equity price volatility.
-    
+
     Operational Risk
     We face operational risks related to our technology infrastructure, cybersecurity,
     and business continuity planning.

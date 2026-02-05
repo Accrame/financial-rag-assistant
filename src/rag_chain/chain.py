@@ -6,7 +6,6 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 
-
 # Prompts for financial document Q&A
 SYSTEM_PROMPT = """You are a financial analyst assistant specialized in analyzing corporate documents like 10-K filings, earnings reports, and investment prospectuses.
 
@@ -35,8 +34,9 @@ Provide a comprehensive answer based on the context above. Include specific numb
 class FinancialRAGChain:
     """RAG chain for financial document Q&A with source citations."""
 
-    def __init__(self, retriever, llm_provider="openai", model_name=None,
-                 temperature=0.0, api_key=None):
+    def __init__(
+        self, retriever, llm_provider="openai", model_name=None, temperature=0.0, api_key=None
+    ):
         self.retriever = retriever
         self.llm = self._create_llm(llm_provider, model_name, temperature, api_key)
         self.chain = self._create_chain()
@@ -46,6 +46,7 @@ class FinancialRAGChain:
         # TODO: add proper error handling for rate limits
         if provider == "openai":
             from langchain_openai import ChatOpenAI
+
             return ChatOpenAI(
                 model=model_name or "gpt-4o-mini",
                 temperature=temperature,
@@ -53,6 +54,7 @@ class FinancialRAGChain:
             )
         elif provider == "anthropic":
             from langchain_anthropic import ChatAnthropic
+
             return ChatAnthropic(
                 model=model_name or "claude-3-haiku-20240307",
                 temperature=temperature,
@@ -137,8 +139,7 @@ class FinancialRAGChain:
 
     def stream(self, question):
         """Stream response tokens."""
-        for chunk in self.chain.stream(question):
-            yield chunk
+        yield from self.chain.stream(question)
 
     def clear_history(self):
         self.chat_history = []
@@ -147,7 +148,7 @@ class FinancialRAGChain:
 class ConversationalRAGChain(FinancialRAGChain):
     """RAG chain with conversation memory for follow-up questions."""
 
-    CONTEXTUALIZE_PROMPT = """Given the chat history and the latest question, 
+    CONTEXTUALIZE_PROMPT = """Given the chat history and the latest question,
 reformulate the question to be standalone (understandable without the chat history).
 Do NOT answer the question, just reformulate it if needed.
 

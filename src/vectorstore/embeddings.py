@@ -55,6 +55,7 @@ def estimate_token_count(text, model="cl100k_base"):
     """Rough token count estimate."""
     try:
         import tiktoken
+
         encoder = tiktoken.get_encoding(model)
         return len(encoder.encode(text))
     except ImportError:

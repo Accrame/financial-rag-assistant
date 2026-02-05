@@ -3,9 +3,9 @@
 import hashlib
 from pathlib import Path
 
+import pdfplumber
 from langchain_core.documents import Document
 from pypdf import PdfReader
-import pdfplumber
 
 
 class FinancialDocumentLoader:
@@ -112,7 +112,7 @@ class FinancialDocumentLoader:
         """Load a plain text file."""
         doc_id = self._generate_doc_id(path)
 
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             text = f.read()
 
         return [

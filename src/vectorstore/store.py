@@ -2,9 +2,8 @@
 
 from pathlib import Path
 
-from langchain_core.documents import Document
-import chromadb
 from langchain_chroma import Chroma
+from langchain_core.documents import Document
 
 
 class VectorStoreManager:
@@ -107,13 +106,14 @@ class VectorStoreManager:
     def clear(self):
         """Nuke everything in the collection."""
         # Delete and recreate collection
-        collection = self._vectorstore._collection
         self._vectorstore._client.delete_collection(self.collection_name)
         self._vectorstore = self._create_vectorstore()
 
 
 def create_vectorstore(
-    embeddings, documents=None, persist_directory="./chroma_db",
+    embeddings,
+    documents=None,
+    persist_directory="./chroma_db",
     collection_name="financial_documents",
 ):
     """Create a vector store, optionally pre-loading documents."""
@@ -166,7 +166,7 @@ if __name__ == "__main__":
 
     # Test search
     results = store.similarity_search_simple("What was the revenue?", k=2)
-    print(f"\nSearch results for 'What was the revenue?':")
+    print("\nSearch results for 'What was the revenue?':")
     for doc in results:
         print(f"  - {doc.page_content[:50]}...")
 
