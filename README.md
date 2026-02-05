@@ -24,6 +24,8 @@ streamlit run streamlit_app/app.py
 
 You need an OpenAI API key for embeddings + generation, or you can use local embeddings (`sentence-transformers`) and just pay for the LLM calls.
 
+There's a sample Apple 10-K (FY2024) in `data/sample_docs/` so you can test immediately without finding your own PDF.
+
 ## Project structure
 
 ```
